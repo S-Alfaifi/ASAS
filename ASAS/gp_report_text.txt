@@ -1,0 +1,1388 @@
+Arabic Sentiment Analysis System (ASAS)
+ 
+ 
+A PROJECT REPORT SUBMITTED
+ 
+IN PARTIAL – FULFILMENT OF THE REQUIREMENT
+ 
+FOR THE AWARD OF THE DEGREE
+ 
+FOR
+ 
+ 
+BACHELOR IN COMPUTER SCIENCE
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+By Students
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SUPERVISOR
+ 
+ 
+Dr. Syed Ghyasuddin Hashmi
+ 
+COLLEGE OF ENGINEERING & COMPUTER SCIENCE
+ 
+DEPARTMENT OF COMPUTER SCIENCE
+ 
+JAZAN UNIVERSITY, JAZAN (KSA)
+ 
+2025-2026 (Semester - 1)
+ 
+(Completion Date: 17/12/2025)
+ 
+Sulaiman Asaad Sulaiman Almothebi Alfaifi 
+202203132 
+Maher Mohammed Yahya Alfaifi 
+202200290 
+Essa Mofareh Mosa Almothebi Alfaifi 
+202203114 
+Rakan Ghanem Saleh Alsogoor 
+202207167 
+Khalid Mohammed Bawah Bawah 
+202105561 
+Ahmed Abdo Mohammed 
+202003512 
+
+ 
+ 
+ 
+ 
+DEPARTMENT OF COMPUTER SCIENCE 
+ 
+APPROVAL FOR BINDING OF GRADUATION PROJECT REPORT 
+ 
+GRADUATION PROJECT (COMP 582) 
+ 
+GROUP: 
+ 
+SESSION   2025 / 2026 
+ 
+ 
+ 
+To be filled in by student 
+ 
+Student name(s):  
+ 
+ 
+ 
+ 
+ 
+ 
+University ID(s): 
+ 
+ 
+Project title      :  
+ 
+ 
+ 
+ 
+To be filled in by supervisor 
+ 
+This is to certify that the project submitted and presented by the above-mentioned student(s) is 
+ 
+(   COMPLETE & ACCEPTED                 INCOMPLETE             NOT ACCEPTED 
+ 
+ 
+and the draft of graduation project report has been corrected from all content flaws, typing errors and language 
+mistakes.  
+Supervisor name 
+: 
+ 
+Signature 
+: 
+  
+ 
+Date 
+: 
+  
+ 
+For Departmental Office use only 
+ 
+Date received : 
+ 
+ 
+ 
+ 
+Signatures  : 
+ 
+Ahmed 
+Abdo 
+Mohammed
+Khalid 
+Mohammed 
+Bawah 
+Bawah
+Rakan 
+Ghanem 
+Saleh 
+Alsogoor
+Essa 
+Mofareh 
+Mosa 
+Almothebi 
+Alfaifi
+Maher 
+Mohammed 
+Yahya 
+Alfaifi
+Sulaiman 
+Asaad 
+Sulaiman 
+Almothebi 
+Alfaifi
+202003512
+ 
+202105561
+ 
+202207167
+202203114
+202200290
+ 
+202203132
+Arabic Sentiment Analysis System (ASAS) 
+
+Acknowledgments
+ 
+ 
+First and foremost, In the name of Allah, the Most Gracious, the Most Merciful, whose grace and guidance 
+have enabled us to complete this project. 
+Second, we want to thank Jazan University, especially its College of Engineering and Computer Science, 
+for their dedication to creating a helpful, well-equipped space that let us dig into our studies, grow what 
+we know, then put it to use. Because of the college’s support with mentors, tools, plus learning materials, 
+finishing this project felt achievable. 
+Also, the sincere thanks you to our supervisor. Throughout this whole process, they always had time for 
+our questions, helped us learn, and kept us going when things got hard. Because of their experience, we 
+finished the project successfully while also growing as students. 
+Our families deserve huge thanks. Their steady affection, belief in us, alongside their tolerance, gave us 
+the power to keep going. They supported us emotionally, understood what we were up against, yet still 
+made sacrifices so we could succeed. This work wouldn’t exist without them - it simply would have been 
+too hard. 
+Huge thanks to everyone involved in this project! Working together, giving their best, and supporting 
+each other really helped us succeed - it wasn’t just about finishing things; however, it was good to do 
+alongside such people. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Table of Contents 
+ABSTRACT ............................................................................................................................................... 1 
+1.INTRODUCTION.................................................................................................................................. 2 
+1.1 PROJECT OVERVIEW STATEMENT ........................................................................................... 2 
+1.2 PROJECT GOAL & OBJECTIVES .................................................................................................. 3 
+1.3 PROJECT SCOPE ............................................................................................................................. 6 
+1.4 PROJECT LIMITATIONS AND CONSTRAINTS ......................................................................... 7 
+1.5 ASSUMPTIONS ............................................................................................................................. 10 
+2. PREVIOUS WORKS AND LITERATURE REVIEW ................................................................... 11 
+2.1 LITERATURE REVIEW ............................................................................................................... 11 
+2.1.1 English-Based Sentiment Analysis Systems ............................................................................. 11 
+2.1.2 Arabic Sentiment Analysis Models .......................................................................................... 12 
+2.1.3 Hybrid and Transfer Learning Approaches ............................................................................ 13 
+2.1.4 Summary of Findings ............................................................................................................... 13 
+2.2 COMMON FEATURES ................................................................................................................. 13 
+2.3 LIMITATIONS IN EXISTING PLATFORMS .............................................................................. 14 
+2.4 FEATURES OF THE PROPOSED SYSTEM ................................................................................ 15 
+3. FEASIBILITY STUDY ...................................................................................................................... 16 
+3.1 PURPOSE OF THE FEASIBILITY STUDY .................................................................................. 16 
+3.2 JUSTIFICATION OF THE PROPOSED SYSTEM ....................................................................... 16 
+3.3 ECONOMIC FEASIBILITY .......................................................................................................... 16 
+3.4 TECHNICAL FEASIBILITY ......................................................................................................... 17 
+3.5 DESIRED SYSTEM FUNCTIONALITY ...................................................................................... 17 
+4. PROJECT PLAN ................................................................................................................................ 19 
+4.1 WORK BREAKDOWN STRUCTURE (WBS) ............................................................................. 19 
+4.2 ACTIVITY AND TASK LIST ........................................................................................................ 20 
+4.3 GANTT CHART ................................................................................................................................. 20 
+5. SYSTEM REQUIREMENTS SPECIFICATION (SRS) ................................................................ 21 
+5.1 DEVELOPMENT METHODOLOGY ........................................................................................... 21 
+5.2 SYSTEM REQUIREMENTS ANALYSIS ..................................................................................... 22 
+5.3 HARDWARE REQUIREMENTS SPECIFICATION .................................................................... 23 
+5.3.1 Development Environment: ..................................................................................................... 23 
+5.3.2 Deployment Server Requirements (for Production / Hosting): ............................................... 23 
+5.4 SOFTWARE REQUIREMENTS SPECIFICATION ..................................................................... 23 
+5.4.1 Development Software: ............................................................................................................ 23 
+5.5 OTHER REQUIREMENTS SPECIFICATIONS ........................................................................... 25 
+
+5.5.1 Usability Requirements ............................................................................................................ 25 
+5.5.2 Legal and Compliance Requirements ...................................................................................... 25 
+5.5.3 Maintenance and Support ........................................................................................................ 25 
+6. SYSTEM DESIGN .............................................................................................................................. 26 
+6.1 APPLICATION ARCHITECTURE DESIGN ................................................................................ 26 
+6.2 DATA FLOW DIAGRAM (DFD) .................................................................................................. 27 
+6.3 CLASS DIAGRAM .............................................................................................................................. 28 
+6.4 USE CASE DIAGRAM ........................................................................................................................ 29 
+6.5 ACTIVITY DIAGRAM ......................................................................................................................... 30 
+6.6 SEQUENCE DIAGRAM ....................................................................................................................... 31 
+6.7 ENTITY RELATIONSHIP DIAGRAM (ERD) ......................................................................................... 32 
+7. CONCLUSION ................................................................................................................................... 33 
+8. REFERENCES .................................................................................................................................... 35 
+ 
+
+Abstract 
+Businesses now need sharp ways to grasp what customers feel as more interactions happen online. 
+A flood of opinions arises daily; therefore, understanding this feedback is key to keeping people 
+happy - also shaping smart choices. 
+ 
+The goal? To build a smart tool using tech like ML and ways to understand human language. It 
+will sift through what customers say in Arabic, then sort those comments into groups showing if 
+people are happy, mad, or somewhere in between. That way businesses can quickly see what’s 
+working well or needs fixing based on how folks truly feel. 
+ 
+You’ll see what customers think via a simple, online display. It shows how happy people are, 
+feelings changing, alongside close looks at the data. Consequently, those in charge can spot what’s 
+happening now, find problems quickly, also gauge if improvements actually work. 
+ 
+The system helps companies act swiftly on what customers feel - fixing issues quickly, building 
+loyalty, moreover, enhancing services. It tracks opinions constantly; therefore, businesses don’t 
+just react to complaints but foresee what people will want next, resulting in ongoing better 
+experiences alongside happier clients. 
+ 
+ 
+ 
+Keywords— Arabic Sentiment Analysis, Natural Language Processing (NLP), Artificial 
+Intelligence (AI), Deep Learning, Transfer Learning, Customer Feedback, Data Visualization, 
+Interactive Dashboard. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+2
+ 
+ 
+1.INTRODUCTION 
+1.1 PROJECT OVERVIEW STATEMENT 
+This project called ASAS – short for Arabic Sentiment Analysis System – sets up a smart setup 
+that picks apart how people feel in Arabic writing. It takes text input, spots the mood behind it, 
+then sorts that into good, bad, or in-between categories. The whole point? Let small companies get 
+a clearer read on what customers really think, using actual evidence instead of guesses. 
+ 
+Sentiment Analysis (SA) falls under artificial intelligence, using natural language processing 
+(NLP) to detect feelings and views hidden in written content. Instead of just labeling text as 
+positive, neutral, or negative [1], it digs into tone and intent. Although most research centers on 
+English, Arabic brings extra hurdles - like intricate grammar, many regional dialects, yet deep 
+contextual layers. To tackle this, ASAS zeroes in on Arabic language material, delivering precise 
+sentiment labels shaped by cultural context. 
+ 
+The system works by cleaning up text first, then pulling out key details before sorting emotions 
+with smart algorithms. ASAS strips out clutter from Arabic writing, spots grammar patterns, while 
+pulling signals tied to feelings. Once processed, outcomes show up on a live dashboard - trend 
+shifts appear in charts, emotion splits come through graphs that make sense at a glance. 
+ 
+Thanks to these features, ASAS gives small companies and analysts a handy way to monitor public 
+sentiment, grasp how happy customers are, or spot spots needing upgrades. Aside from that real-
+world use, it also pushes forward Arabic NLP progress, setting up solid groundwork for upcoming 
+artificial intelligence tools trying to read emotional cues in Arabic speech. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+3
+ 
+ 
+1.2 PROJECT GOAL & OBJECTIVES 
+ Goals: 
+One main aim of this project? Build a smart tool that spots, makes sense of, then sorts emotions in Arabic 
+writing. It’s about designing something that gets how Arabic conveys feelings, including subtle language 
+shifts, figuring out if a message shows happiness, frustration, or just nothing strong. Instead of just 
+checking keywords, the system uses machine learning along with text analysis to catch the real meaning 
+behind phrases. 
+ 
+Organizations, firms, and institutions should be able to keep tabs on what customers really think - right as 
+it happens. In this era where data shapes decisions, knowing public opinion about a product or service 
+makes a big difference when it comes to holding onto clients and expanding. By constantly scanning 
+Arabic feedback, the tool delivers useful clues so businesses can step in early instead of playing catch-up, 
+shaping responses that meet user demands better while gradually lifting service standards. 
+ 
+Another aim? Push Arabic NLP forward, then tie it into real-world business uses. English sentiment tools 
+have come a long way - Arabic hasn’t, mainly 'cause its structure’s messy, dialects differ wildly, plus 
+there’s barely any tagged data around. Tackle this by crafting a focused Arabic sentiment model - fill the 
+hole, also give upcoming Arabic AI projects a solid base to build from. 
+ 
+Finally, the project focuses on creating a user-friendly interface that links smart tech with everyday use. 
+Instead of just building a precise model, it emphasizes showing outcomes clearly via a hands-on 
+dashboard. That way, people without tech backgrounds - like marketers, entrepreneurs, or support staff - 
+can grasp insights quickly and act using live information. 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+4
+ 
+ 
+Objectives: 
+1. Data Collection and Preparation: The first objective is to gather a diverse dataset of Arabic text 
+from various sources such as social media platforms, customer review portals, and public opinion 
+posts. Once collected, the text undergoes a detailed preprocessing phase—removing noise, stop 
+words, punctuation, and special characters, as well as normalizing and tokenizing the data. These 
+steps ensure that the model is trained on clean and consistent data, which directly improves its 
+classification accuracy . 
+ 
+2. Model Development and Training: The second objective focuses on developing the core sentiment 
+analysis model. The model will be based on advanced NLP and AI techniques using Python and 
+relevant libraries such as TensorFlow, PyTorch, and Transformers. It will be trained to classify 
+Arabic text into three categories: positive, negative, and neutral. Through experiments and fine-
+tuning, the system aims to reach high accuracy and robustness in understanding the subtle tones 
+of Arabic sentiment. 
+ 
+3. System Integration and Dashboard Design: The third objective is to integrate the AI model into a 
+complete web-based system. The project will provide an interactive dashboard that displays real-
+time analytics, sentiment summaries, and visual charts. The dashboard will allow users to input 
+Arabic text directly and instantly view sentiment classifications and overall statistics. This 
+integration bridges the gap between complex AI models and practical, easy-to-use applications . 
+ 
+4. Performance Evaluation and Optimization: The fourth objective is to evaluate the performance of 
+the model using various test datasets and metrics such as accuracy, precision, recall, and F1-score. 
+The system will be refined through iterative testing, allowing for model optimization and 
+hyperparameter tuning. This ensures the model maintains high performance even when analyzing 
+unseen or domain-specific Arabic text. 
+ 
+
+ 
+ 
+ 
+ 
+5
+ 
+ 
+5. Practical Application and Long-Term Impact: The final objective is to demonstrate how the system 
+can be applied in real-world environments. By providing actionable insights, the project will 
+enable businesses to better understand customer sentiment, improve decision-making, and 
+strengthen customer relationships. Furthermore, this system lays a foundation for future 
+enhancements—such as multilingual expansion, sarcasm detection, and integration with social 
+media monitoring tools, thereby contributing to the broader field of Arabic AI-driven analytics. 
+Table 1.1: Project Outputs and Expected Findings 
+ 
+ 
+ 
+ 
+Potential Outputs 
+Expected Findings 
+Trained Arabic Sentiment Analysis Model that 
+classifies text into positive, negative, or neutral 
+categories using AI and NLP techniques. 
+Achieves strong accuracy in recognizing 
+emotional tones within Arabic sentences, 
+proving the effectiveness of deep learning for 
+Arabic text understanding. 
+Preprocessing and Analysis Pipeline capable of 
+cleaning, tokenizing, and preparing Arabic text 
+for sentiment detection. 
+Ensures higher model precision by reducing 
+linguistic noise and improving consistency in 
+text interpretation. 
+Interactive Dashboard Interface for visualizing 
+sentiment results and trends over time. 
+Displays live charts and summaries showing 
+how customer opinions evolve, helping users 
+interpret feedback easily and make informed 
+decisions. 
+Integrated Evaluation Framework to test and 
+refine the model with new data samples. 
+Generates clear, data-driven reports that 
+highlight customer satisfaction levels and 
+provide actionable insights for business or 
+organizational improvement. 
+Trained Arabic Sentiment Analysis Model that 
+classifies text into positive, negative, or neutral 
+categories using AI and NLP techniques. 
+Achieves strong accuracy in recognizing 
+emotional tones within Arabic sentences, 
+proving the effectiveness of deep learning for 
+Arabic text understanding. 
+
+ 
+ 
+ 
+ 
+6
+ 
+ 
+1.3 PROJECT SCOPE 
+The scope of this project is carefully defined to ensure that the objectives are realistic, technically 
+achievable, and deliver measurable outcomes within the available timeframe and resources. The system 
+focuses on designing and implementing an Arabic Sentiment Analysis platform that utilizes Artificial 
+Intelligence (AI) and Natural Language Processing (NLP) to classify and interpret customer opinions 
+written in Arabic. 
+ 
+1. Analysis Focus: The project is limited to the processing and analysis of written Arabic text only. 
+Audio, video, and non-textual data sources fall outside the current project’s boundaries. The focus 
+will be on digital text collected from online sources such as social media posts, reviews, and 
+feedback forms. Each input will be cleaned, normalized, and preprocessed before being analyzed 
+by the AI model. This restriction ensures that the system remains optimized for textual sentiment 
+detection and can deliver accurate and consistent results. 
+ 
+2. Classification Depth: The sentiment analysis is confined to three major emotional categories — 
+positive (satisfaction), negative (anger or dissatisfaction), and neutral. This three-level 
+classification strikes a balance between analytical depth and computational efficiency, allowing 
+the model to capture essential emotional variations without overcomplicating interpretation. The 
+classification outcome will provide valuable insight into how customers perceive products or 
+services, helping organizations identify satisfaction trends and potential issues. 
+ 
+3. Output Medium: The system’s output will be presented through an interactive dashboard built 
+using modern visualization tools such as Plotly Dash or Flask. The dashboard will serve as a user-
+friendly interface that allows users to input text, view sentiment results instantly, and explore 
+visual reports such as charts and trend analyses. This visual medium ensures that both technical 
+and non-technical users can easily interpret the analysis results and use them for data-driven 
+decision-making. 
+ 
+4. Linguistic Boundary: Since Arabic is a rich and diverse language with multiple dialects and 
+linguistic forms, the project initially focuses on Modern Standard Arabic (MSA) and a limited 
+number of commonly used dialects, such as the Saudi or Gulf dialects. Expanding the system to 
+
+ 
+ 
+ 
+ 
+7
+ 
+ 
+include additional dialects and regional variations will be considered in future phases. By 
+narrowing the linguistic scope, the model can achieve higher precision and maintain performance 
+consistency during training and evaluation. 
+ 
+5. System Limitation and Expansion Potential: The current system does not handle sarcasm, 
+idiomatic expressions, or context beyond the sentence level. However, this limitation lays the 
+groundwork for future enhancements, such as incorporating advanced transformer-based 
+architectures, larger Arabic corpora, and multi-dialect sentiment datasets. These future 
+improvements could extend the system’s reach to more complex language features and broader 
+real-world use cases. 
+ 
+The project scope is centered on developing a practical and effective Arabic Sentiment Analysis system 
+that delivers measurable results in understanding written Arabic text, visualizing emotional tone, and 
+supporting data-driven decision-making. The deliberate focus on text-based inputs, three-level 
+classification, and an interactive dashboard ensures that the project remains feasible, efficient, and directly 
+aligned with its core research objectives. 
+ 
+1.4 PROJECT LIMITATIONS AND CONSTRAINTS 
+Despite the promising potential of artificial intelligence and natural language processing in sentiment 
+analysis, this project operates within several practical and linguistic constraints. These limitations are 
+largely due to the inherent complexity of the Arabic language, data availability, and technical restrictions 
+in AI model deployment. Understanding these constraints provides clarity on the project’s realistic 
+capabilities and highlights areas for future research and improvement. 
+ 
+1. Data Quality and Availability: The performance of any AI-based sentiment analysis model 
+depends heavily on the quality and diversity of the data it is trained on. High-quality Arabic 
+datasets that are balanced, labeled, and domain-relevant are still relatively scarce. Much of the 
+available data is either unstructured, incomplete, or inconsistent in dialect and style. As a result, 
+model performance may fluctuate depending on the dataset source, topic, or writing tone. The 
+system’s accuracy, therefore, is only as strong as the clarity and representativeness of the data it 
+receives. 
+
+ 
+ 
+ 
+ 
+8
+ 
+ 
+ 
+2. Linguistic Complexity: The Arabic language poses significant challenges for automated analysis 
+because of its intricate grammatical structure, morphological richness, and variation in syntax. 
+Furthermore, Arabic includes numerous dialects—such as Egyptian, Gulf, Levantine, and 
+Maghrebi—each with its own vocabulary, spelling conventions, and idiomatic expressions. This 
+diversity makes it difficult for AI models to achieve uniform understanding across regions. Even 
+Modern Standard Arabic (MSA), while more consistent, differs greatly from spoken forms used 
+in social media and everyday communication. The challenge extends further when dealing with 
+slang, sarcasm, or figurative expressions that are context-dependent and culturally nuanced, 
+making accurate classification more complex for NLP systems. 
+ 
+3. Dialectal and Morphological Barriers: Arabic’s complex morphology and diverse dialects present 
+unique challenges that hinder the development of standard lexicons and word embeddings for 
+sentiment analysis [1]. Many Arabic words share the same root but differ in meaning depending 
+on affixes and context. Without a large-scale, standardized lexicon, it becomes difficult for models 
+to generalize sentiment across dialectal boundaries. Additionally, diacritics (marks that affect 
+pronunciation and meaning) are often omitted in digital writing, increasing the risk of 
+misinterpretation. 
+ 
+4. Computational Resource Requirements: Developing, training, and fine-tuning deep learning 
+models for Arabic NLP is computationally demanding. Tasks such as model optimization, 
+hyperparameter tuning, and large-scale data processing require significant GPU power and 
+extended training time. Limited access to high-performance computing environments may restrict 
+the complexity or depth of models that can be trained. Consequently, the project must carefully 
+balance performance optimization with available hardware resources to ensure feasible 
+implementation within academic and time constraints. 
+ 
+5. Data Labeling and Annotation Constraints: Annotating large datasets for supervised learning is 
+labor-intensive and time-consuming. Manual labeling of Arabic text for sentiment often requires 
+linguistic expertise to ensure consistency and accuracy, particularly when dealing with dialectal 
+expressions or ambiguous phrases. In many publicly available datasets, inconsistent labeling 
+
+ 
+ 
+ 
+ 
+9
+ 
+ 
+standards lead to noise that affects model reliability. This project relies on pre-existing labeled 
+datasets, which may not perfectly match the intended domain or tone of analysis. 
+ 
+ 
+6. Generalization and Model Transferability: While transfer learning techniques such as those used 
+in AraBERT improve efficiency, their performance still depends on the similarity between source 
+and target data. If the new input text differs significantly in tone, vocabulary, or context, the 
+model’s predictions may become less reliable. Thus, while the model can generalize reasonably 
+well across certain datasets, it may not perform equally across all Arabic-speaking regions or 
+industries without further fine-tuning and retraining. 
+ 
+7. Limited Context Understanding: Sentiment analysis models typically analyze sentences 
+independently, without fully understanding broader conversational or situational context. This 
+limitation becomes evident in detecting sarcasm, irony, or mixed sentiments within longer text 
+passages. For example, an Arabic tweet expressing dissatisfaction humorously or through double 
+meanings may be misclassified as positive or neutral. The project acknowledges this limitation 
+and treats deeper context understanding as an area for future enhancement. 
+ 
+8. External Integration and Scalability: The system is designed primarily for research and 
+demonstration purposes rather than large-scale enterprise deployment. While it can analyze data 
+and visualize results effectively, integration with live social media platforms or real-time analytics 
+pipelines may require additional development, such as API integration, database scaling, and 
+advanced security layers. These elements remain outside the current academic scope but represent 
+potential directions for future expansion. 
+ 
+While the Arabic Sentiment Analysis System demonstrates the practical application of AI in 
+understanding Arabic text, its current performance is limited by data quality, linguistic diversity, and 
+technical resources. The system sets a strong foundation for future research that could overcome these 
+limitations through improved datasets, larger computational resources, and enhanced contextual models 
+that better represent the depth and richness of the Arabic language 
+ 
+
+ 
+ 
+ 
+ 
+10
+ 
+ 
+1.5 ASSUMPTIONS 
+The successful execution of this project relies on several key assumptions related to data, technology, and 
+system feasibility. These conditions are necessary for developing a reliable Arabic sentiment analysis 
+model and interactive dashboard . 
+ 
+1. Data Availability: It is assumed that sufficient Arabic text data—accurately labeled and balanced 
+across sentiment types—will be available for both training and testing. The project depends on 
+clean, relevant datasets from social media or public sources that reflect genuine user opinions. 
+ 
+2. Technical Adequacy: Development assumes access to the required tools and resources, including 
+Python, Pandas, NumPy, TensorFlow/PyTorch, and Transformers, to build, train, and deploy the 
+sentiment analysis model effectively. Adequate hardware, such as a GPU-enabled environment, is 
+also assumed to be available. 
+ 
+3. Feasibility of Selected Technologies: It is assumed that Transformer-based models like AraBERT 
+can handle Arabic text efficiently and can achieve high accuracy when fine-tuned. These 
+technologies are expected to integrate smoothly with the web frameworks used for dashboard 
+visualization. 
+ 
+4. Data Consistency: Input text provided to the system is assumed to be primarily in Arabic, free 
+from excessive noise, code-switching, or irrelevant symbols. Although preprocessing manages 
+most cleaning, consistent and readable input remains essential for accurate results. 
+ 
+5. End-User Interaction: It is assumed that users will engage with the dashboard as intended—
+interpreting visualized trends and sentiment results correctly, using them to make data-driven 
+decisions. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+11
+ 
+ 
+2. PREVIOUS WORKS AND LITERATURE REVIEW 
+This chapter reviews prior studies, systems, and technologies that have contributed to the development 
+of sentiment analysis, particularly in the Arabic language. The review outlines the evolution of sentiment 
+analysis techniques, highlights their common features, identifies key limitations in existing systems, and 
+clarifies how the proposed project improves upon current solutions. 
+ 
+2.1 LITERATURE REVIEW 
+ 
+Sentiment Analysis (SA) is a key field within Artificial Intelligence (AI) and Natural Language 
+Processing (NLP) that focuses on identifying emotions and opinions in text, classifying them as positive, 
+negative, or neutral [1]. While SA is well-established in English, research in Arabic sentiment analysis 
+(ASA) remains limited due to the language’s rich morphology and dialectal diversity, which make it 
+challenging for standard models to handle [3]. 
+Early Arabic SA approaches were lexicon-based, relying on predefined lists of positive and negative 
+words. However, these systems often failed to understand context or sarcasm. Later, machine learning 
+techniques such as Naïve Bayes and Support Vector Machines improved accuracy but required extensive 
+manual data preparation [4]. 
+Recent advances in deep learning and transformer models, such as AraBERT and CAMeLBERT, have 
+significantly boosted performance by capturing context and meaning more effectively [3]. Despite this 
+progress, limitations persist — including a shortage of labeled datasets and difficulties with informal or 
+mixed Arabic text [4]. 
+Building on prior research, the current project applies these modern NLP methods to build an interactive 
+Arabic sentiment analysis dashboard, designed to help organizations monitor customer emotions and 
+satisfaction trends in real time [1][3][4]. 
+ 
+2.1.1 English-Based Sentiment Analysis Systems 
+Early sentiment analysis models were developed for English text, establishing the foundations for later 
+Arabic NLP systems. Tools such as TextBlob and VADER (Valence Aware Dictionary for Sentiment 
+Reasoning) remain among the most used for basic sentiment classification. 
+ 
+
+ 
+ 
+ 
+ 
+12
+ 
+ 
+TextBlob employs a combination of rule-based and probabilistic approaches to assign polarity scores to 
+text. 
+VADER, optimized for social media analysis, performs well in identifying emotional tone in short 
+informal text. 
+Commercial tools like Google Cloud Natural Language API and IBM Watson Tone Analyzer introduced 
+machine learning and contextual models capable of handling multilingual text, but their performance in 
+Arabic remains weak because of limited linguistic resources and training data
+ [
+3
+ .]
+ 
+ 
+2.1.2 Arabic Sentiment Analysis Models 
+ 
+Arabic SA systems have evolved significantly in recent years. The CAMeL Tools platform, developed 
+by NYU Abu Dhabi, provides a complete toolkit for tokenization, morphological disambiguation, and 
+sentiment scoring in Modern Standard Arabic (MSA). However, its accuracy decreases with dialectal 
+content. 
+ 
+Another major advancement is AraBERT, a transformer-based model developed by Antoun et al., 
+trained on more than 1.5 billion Arabic words. It captures deep contextual relationships between words 
+and has become a benchmark in Arabic NLP research. Studies using AraBERT report accuracies 
+exceeding 95% in sentiment classification tasks
+ [
+6
+.]
+ 
+ 
+In addition, Mazajak, an open-source system developed at Jordan University of Science and Technology, 
+applies deep learning for real-time sentiment analysis of Arabic tweets. It performs better than traditional 
+models but still struggles with sarcasm and mixed-language inputs . 
+Datasets such as ArSenTD-Lev and ArSenTD-LEV have also been released to support dialectal 
+sentiment analysis, particularly for Levantine and Egyptian Arabic.[4][5] 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+13
+ 
+ 
+2.1.3 Hybrid and Transfer Learning Approaches 
+ 
+Recent studies have applied hybrid deep learning techniques to improve sentiment detection accuracy. 
+For instance, Alharbi et al. [6] proposed a hybrid RNN-BiLSTM model that integrates AraBERT 
+embeddings, achieving high accuracy across multiple Arabic datasets . 
+Similarly, Abualigah et al. [3] and Alsokkar et al. [4] combined feature extraction, word embeddings 
+(Word2Vec and fastText), and neural networks to enhance classification performance . 
+Transfer learning has proven particularly powerful: by fine-tuning pre-trained models like AraBERT or 
+Arabic GPT on specific datasets, researchers achieved significant gains in performance while reducing 
+computation time and data requirements. 
+ 
+2.1.4 Summary of Findings 
+ 
+Literature reflects a clear progression — from dictionary-based systems to deep learning and 
+transformer-based architectures. While English systems like VADER and TextBlob laid the 
+groundwork, Arabic-oriented models such as AraBERT and Mazajak demonstrate the growing ability 
+to interpret Arabic emotions effectively. 
+However, challenges persist in handling dialectal variations, sarcasm, and providing meaningful 
+visualization of sentiment trends. 
+This project builds upon these advancements by integrating modern AI models with an interactive 
+visualization dashboard, offering a more context-aware and accessible tool for Arabic sentiment 
+analysis. 
+ 
+2.2 COMMON FEATURES 
+ 
+Existing sentiment analysis platforms, both Arabic and English, share several features : 
+1. Automatic Sentiment Classification: Most tools classify text into positive, negative, or neutral 
+categories using machine learning or deep learning algorithms. 
+2. Preprocessing Pipelines: Techniques such as tokenization, stop-word removal, normalization, 
+and stemming are standard to prepare raw text for analysis. 
+
+ 
+ 
+ 
+ 
+14
+ 
+ 
+3. Feature Extraction and Word Embeddings: Methods like TF-IDF, Word2Vec, or fastText are 
+widely used to convert words into numerical vectors suitable for modeling . 
+4. Visualization and Reporting: Some systems include basic dashboards or visual summaries to 
+help users interpret results quickly. 
+5. APIs and Integration Options: Many modern systems expose APIs or web interfaces for 
+integration into larger business tools or analytical systems. 
+2.3 LIMITATIONS IN EXISTING PLATFORMS 
+Despite progress, existing Arabic sentiment analysis systems face several limitations : 
+1. Limited Dialect Coverage: Many systems perform well on MSA but fail to accurately analyze 
+dialectal Arabic, which dominates online communication. 
+2. Data Scarcity: Arabic datasets are often small, unbalanced, or domain-specific, making models 
+less generalizable . 
+3. Context and Sarcasm Misinterpretation: Even advanced models struggle with idiomatic 
+expressions, irony, or humor. 
+4. Computational Demands: Deep learning architectures, especially transformers, require 
+substantial computational resources and GPU access. 
+5. Weak User Experience : Few existing systems offer an interactive interface or visual trend 
+analysis, limiting practical usability. 
+Table 2.1: Limitations in Existing Arabic Sentiment Analysis Platforms 
+Limitation 
+Description 
+Dialect Coverage 
+Most models focus on Modern Standard Arabic 
+(MSA) and ignore dialects. 
+Dataset Quality 
+Many datasets are small, unbalanced, or contain 
+noisy text. 
+Computational Cost 
+Transformer models require high GPU power 
+and long training times. 
+Context Understanding 
+Sarcasm and humor often lead to 
+misclassification. 
+Visualization 
+Existing platforms lack rich dashboards or trend-
+tracking features. 
+
+ 
+ 
+ 
+ 
+15
+ 
+ 
+2.4 FEATURES OF THE PROPOSED SYSTEM 
+The proposed Arabic Sentiment Analysis introduces several enhancements to address the above 
+challenges: 
+ 
+1. Arabic-Specific AI Model: Utilizes transformer-based Arabic language models such as AraBERT, 
+fine-tuned for sentiment classification with improved accuracy and contextual understanding. 
+2. Comprehensive Preprocessing: Includes tokenization, normalization, and diacritic removal to 
+clean Arabic text efficiently before analysis. 
+3. Dialect Flexibility: Designed to handle both Modern Standard Arabic and selected dialects, 
+improving real-world coverage. 
+4. Interactive Visualization: A dynamic dashboard built using Flask or Plotly Dash displays trends, 
+polarity distribution, and customer satisfaction levels in real-time. 
+5. Data Management and Reporting: Automatically generates sentiment reports, highlighting shifts 
+in public opinion or customer satisfaction over time. 
+6. Accessibility and Scalability: The system is lightweight, web-based, and optimized for desktop 
+and mobile viewing, ensuring easy accessibility. 
+Table 2.2: Comparison – Proposed System vs. Existing Platforms 
+Feature 
+Existing Platforms 
+Proposed System 
+Model Type 
+Traditional ML / Basic DL 
+Transformer-based AI 
+(AraBERT) 
+Dialect Support 
+Primarily MSA 
+Supports MSA + Selected 
+Dialects 
+Data Processing 
+Basic Cleaning 
+Advanced NLP Preprocessing 
+Visualization 
+Minimal static charts 
+Interactive live dashboard 
+Accuracy 
+80–90% typical 
+Up to 95% (expected) 
+Accessibility 
+Limited or technical 
+Web-based, user-friendly 
+interface 
+ 
+
+ 
+ 
+ 
+ 
+16
+ 
+ 
+3. FEASIBILITY STUDY 
+3.1 PURPOSE OF THE FEASIBILITY STUDY 
+This report checks whether building a system to understand customer feelings from Arabic text makes 
+sense. It looks at whether it can be done. 
+We evaluate if the project is feasible within the given schedule and budget, ensuring it’s practical and 
+genuinely beneficial to its intended users. 
+Studies confirm that automated text classification for Arabic—when combined with proper preprocessing 
+and NLP tools—is both feasible and increasingly essential for businesses that manage large-scale 
+customer feedback [2][5]. 
+3.2 JUSTIFICATION OF THE PROPOSED SYSTEM 
+The system is justified by the following needs: 
+1. Market Gap: There’s an opening because nobody has built a feeling-analyzer that truly understands 
+how people write - or even speak - in Arabic. It fills this void. 
+2. Proactive Monitoring: Keep tabs on how people feel, so businesses can anticipate issues rather than 
+just respond to them once they arise. 
+3. Actionable Insights: It turns messy text into straightforward visuals - information you can actually 
+use, displayed on an easy-to-explore screen. 
+ 
+Research highlights the same gap — most Arabic sentiment systems still struggle with dialects and 
+contextual meanings, leaving room for focused, practical solutions that connect language understanding 
+with decision-making [2][5]. 
+ 
+3.3 ECONOMIC FEASIBILITY 
+This project looks promising financially because it largely uses freely available tools – Python, Pandas, 
+either PyTorch or TensorFlow. It cuts down on expenses for licenses also buying software. Getting data 
+ready alongside teaching the system takes work, yet a tailored setup ultimately pays off. It boosts how 
+well you stack up against others while also lifting service standards - a smart way to sidestep pricey, one-
+size-fits-all options. 
+
+ 
+ 
+ 
+ 
+17
+ 
+ 
+As emphasized in related research, the accessibility of open-source machine learning libraries and Arabic 
+NLP resources has reduced project costs and made local-language AI systems far more attainable [5]. 
+3.4 TECHNICAL FEASIBILITY 
+We can build this because: 
+1. A reliable toolkit - Python, Pandas, NumPy to handle information, alongside PyTorch, 
+TensorFlow, or Keras for building models - forms a solid foundation in artificial intelligence. 
+2. You can use cutting-edge language tools - thanks to a resource offering previously trained options 
+for Arabic. 
+3. To create a dynamic online display, we can use either Plotly Dash or Flask alongside standard web 
+technologies like HTML, CSS, and JavaScript. Or even vibe Coding, this ensures we have the 
+skills needed for contemporary, responsive user experience. 
+Prior Arabic NLP studies have confirmed that these same frameworks and toolkits provide a 
+technically stable foundation for sentiment classification and real-time visualization systems [2][5]. 
+ 
+3.5 DESIRED SYSTEM FUNCTIONALITY 
+The proposed system aims to provide a complete, end-to-end solution for understanding and visualizing 
+customer emotions expressed in Arabic text. It combines advanced Natural Language Processing (NLP) 
+techniques with an interactive, web-based dashboard to ensure accurate analysis and accessible 
+presentation of sentiment trends. The functionality is structured around several main components that 
+together enable efficient text processing, classification, and visualization. 
+ 
+1. Data Input and Preprocessing: 
+The system accepts Arabic text from various sources such as social media posts, online reviews, 
+or customer feedback. Once collected, the text is cleaned and normalized by removing 
+unnecessary symbols, links, non-Arabic characters, and repetitive letters. It also unifies different 
+Arabic writing forms, ensuring the input is consistent and ready for accurate analysis. 
+2. Sentiment Classification: 
+After preprocessing, the text passes through a trained AI-based sentiment model fine-tuned on 
+Arabic datasets. The model interprets linguistic features and context to classify each statement 
+as positive (satisfaction), negative (anger), or neutral (indifference). Using transformer-based 
+
+ 
+ 
+ 
+ 
+18
+ 
+ 
+models such as AraBERT, the system better understands dialects and tone variations compared 
+to traditional methods. 
+3. Contextual Analysis and Trend Detection: 
+The system aggregates classified results to reveal broader emotional patterns across time or 
+topics. This helps identify changes in customer sentiment toward products, services, or public 
+events. The use of transfer learning further enhances performance by allowing the model to adapt 
+to new, unseen Arabic text [2][5]. 
+4. Visualization and Dashboard Interaction: 
+The classified results are displayed through a dynamic dashboard built with Plotly Dash or Flask, 
+showing easy-to-read charts of sentiment distribution and trends. The interface supports both 
+desktop and mobile devices, providing users with accessible real-time insights. 
+5. Performance Monitoring and Updates: 
+The system continuously evaluates its accuracy by comparing predictions with verified data. 
+Over time, developers can retrain or fine-tune the model to maintain performance and adapt to 
+new slang, dialects, or expressions appearing online. 
+6. Reporting and Exporting: 
+Users can generate periodic reports summarizing key sentiment patterns, keyword frequencies, 
+and customer attitude shifts. These reports can be exported for deeper analysis or organizational 
+decision-making. 
+ 
+By combining these features, the system offers both technical intelligence and real-world utility. It not 
+only detects emotional tone but translates this insight into actionable knowledge that organizations can 
+use to enhance customer satisfaction, product development, and communication strategies. In alignment 
+with the latest Arabic sentiment analysis frameworks, this design emphasizes automation, contextual 
+accuracy, and real-time accessibility for modern data-driven environments [2][5]. 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+19
+ 
+ 
+4. PROJECT PLAN 
+4.1 WORK BREAKDOWN STRUCTURE (WBS) 
+The project will be executed in a phased manner, adhering to a typical Machine 
+Learning/Application Development lifecycle. 
+Figure 4.1: Work Breakdown Structure (WBS) A hierarchical structure showing the project 
+phases: Project initiation & requirements analysis, System Design & Modelling, Database 
+Architecture Implementation, System Development, Finalization & Documentation. 
+ 
+Figure 4.1 Work Breakdown Structure (WBS) 
+
+ 
+ 
+ 
+ 
+20
+ 
+ 
+4.2 ACTIVITY AND TASK LIST 
+ 
+Figure 4.2 Activity and Task List 
+4.3 Gantt Chart 
+Below is the Gantt chart outlining the timeline for key activities: 
+ 
+Figure 4.3 Gantt Chart 
+The above project plan ensures a structured approach to building the Arabic Sentiment Analysis 
+System (ASAS). Each phase builds upon the previous one, with overlapping tasks to optimize time. 
+The timeline allows for testing, feedback, and adjustments before the official launch. 
+
+ 
+ 
+ 
+ 
+21
+ 
+ 
+5. SYSTEM REQUIREMENTS SPECIFICATION (SRS) 
+5.1 DEVELOPMENT METHODOLOGY 
+The project will follow the Agile development methodology to ensure flexibility and adaptability 
+throughout the development process. 
+Agile allows for iterative progress, enabling continuous feedback on model performance and 
+incremental delivery of functional features, which is critical for ML projects where initial data 
+quality and model performance require constant adjustment. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 5.1: Agile Development Methodology 
+ 
+
+ 
+ 
+ 
+ 
+22
+ 
+ 
+5.2 SYSTEM REQUIREMENTS ANALYSIS 
+The system requirements were identified by analyzing the needs of both end users (businesses or 
+researchers) and administrators responsible for managing the AI sentiment model and dashboard. The 
+analysis focuses on the following aspects: 
+ 
+➢ User Requirements: 
+o Ability to input Arabic text or upload customer feedback directly through the dashboard. 
+o Instant sentiment classification showing whether the text expresses satisfaction, anger, or 
+neutrality. 
+o Access to interactive charts displaying overall sentiment trends and proportions. 
+o Option to download or export reports summarizing sentiment results over specific time periods. 
+o A simple, bilingual interface (Arabic and English) that works smoothly across desktop and mobile 
+devices. 
+ 
+➢ Admin Requirements: 
+o Ability to monitor system performance and track the accuracy of the AI model. 
+o Tools to update, retrain, or fine-tune the sentiment model using new Arabic datasets. 
+o Access to data management controls for adding, deleting, or reviewing analyzed text entries. 
+o Administrative panel for dashboard customization and managing user accounts or access levels. 
+ 
+➢ Security and Compliance Requirements: 
+o Implementation of SSL encryption to secure transmitted data between the client and server. 
+o Protection of user-submitted text and analysis results through secure database storage. 
+o Compliance with data privacy principles, ensuring that customer text is used only for analysis and 
+never shared externally. 
+o Regular security checks and access logs to monitor unauthorized activity. 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+23
+ 
+ 
+5.3 HARDWARE REQUIREMENTS SPECIFICATION 
+The hardware requirements define the specifications needed for both development and deployment of the 
+Arabic Sentiment Analysis System. Since the system involves machine learning, text processing, and real-
+time visualization, moderate computational power and sufficient storage are essential to ensure smooth 
+operation and scalability. 
+5.3.1 Development Environment: 
+▪ Processor: Intel Core i5 / AMD Ryzen 5 or higher 
+▪ Memory (RAM): Minimum 8 GB (16 GB recommended for model training) 
+▪ Storage: At least 50 GB of free disk space 
+▪ GPU (Optional but recommended): NVIDIA GPU with at least 4 GB VRAM for faster model 
+training (e.g., RTX 2050 or higher) 
+▪ Operating System: Windows 10 / 11 or Ubuntu Linux 
+▪ Network: Stable internet connection for accessing APIs, online datasets, and Python libraries 
+5.3.2 Deployment Server Requirements (for Production / Hosting): 
+▪ Processor: Multi-core CPU (Intel Xeon / AMD equivalent) 
+▪ Memory (RAM): Minimum 8 GB, scalable depending on concurrent users 
+▪ Storage: SSD storage of 100 GB or more for efficient data retrieval and logs 
+▪ GPU (Optional): Required if model inference or retraining occurs on the server 
+▪ Operating System: Linux (Ubuntu 20.04 LTS or newer) for stability and performance 
+▪ Hosting Environment: Cloud-based server (e.g., AWS EC2, Google Cloud, or local VPS) 
+▪ Network: High-speed internet with SSL-enabled connection for secure data exchange 
+ 
+5.4 SOFTWARE REQUIREMENTS SPECIFICATION 
+The software requirements define the tools, platforms, and frameworks necessary for developing, training, 
+and deploying the Arabic Sentiment Analysis System. The project integrates natural language processing, 
+machine learning, and web development technologies to ensure efficiency, scalability, and user 
+accessibility. 
+5.4.1 Development Software: 
+1. Programming Language: Python 3.x — used for all data preprocessing, model training, and system 
+logic. 
+2. Development Environments: Visual Studio Code, Google Colab, or Jupyter Notebook for coding, 
+
+ 
+ 
+ 
+ 
+24
+ 
+ 
+testing, and training the model. 
+3. Libraries and Frameworks: 
+3.1. Data Handling: Pandas, NumPy — for cleaning and organizing Arabic text data. 
+3.2. Machine Learning / Deep Learning: PyTorch or TensorFlow, with Keras for model 
+development and training. 
+3.3. NLP Frameworks: Hugging Face Transformers (for AraBERT and tokenizer support). 
+3.4. Model Evaluation: Scikit-learn — for performance metrics such as accuracy, precision, and 
+recall. 
+3.5. Visualization: Matplotlib and Plotly for generating data insights and graphical reports. 
+4. Web and Dashboard Development: 
+4.1. Framework: Flask or Plotly Dash — for building the interactive dashboard that displays real-
+time results. 
+4.2. Frontend: HTML, CSS, JavaScript — for designing responsive and user-friendly interfaces. 
+4.3. APIs: Flask REST API — to connect the AI model with the dashboard and handle text 
+classification requests. 
+5. Deployment and Hosting Software: 
+5.1. Web Server: Apache or Nginx for hosting the Flask/Dash application. 
+5.2. Cloud Platforms (optional): Google Cloud, AWS, or Render for remote access and scalability. 
+5.3. Version Control: Git and GitHub — for managing code versions and collaborative 
+development. 
+5.4. Security: SSL certification for encrypting data transmission between the client and server. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+25
+ 
+ 
+5.5 OTHER REQUIREMENTS SPECIFICATIONS 
+5.5.1 Usability Requirements 
+ 
+▪ The system must be easy to use on both computers and mobile devices. The dashboard is designed 
+to be simple, clear, and intuitive so that users can quickly understand how to use it without needing 
+technical knowledge . 
+▪ Each chart and result on the dashboard includes short explanations to help users interpret what 
+they see — whether they’re data specialists or general users . 
+▪ The goal is to make the experience fast and frustration-free, following best practices in modern 
+system design where clarity and ease of use are key to user satisfaction. [3][6] 
+ 
+5.5.2 Legal and Compliance Requirements 
+ 
+▪ All customer text and data used in the system must remain private and secure. The system follows 
+strong data protection standards to make sure that user input is used only for analysis and never 
+shared without permission. 
+▪ All communication between the dashboard and server is encrypted using SSL. 
+▪ This approach follows current ethical practices in AI development, ensuring privacy, trust, and 
+responsible use of technology. [4][6] 
+ 
+5.5.3 Maintenance and Support 
+ 
+▪ The system is built to be easy to maintain and update. The AI model can be retrained in the future 
+using new Arabic data to improve accuracy as language and slang evolve . 
+▪ The dashboard and backend can be updated separately, making improvements or fixes simple 
+without affecting the whole system. 
+▪ Basic maintenance tasks — like performance checks, bug fixes, and data cleanup — will be done 
+regularly to keep the system running smoothly and reliably. 
+
+ 
+ 
+ 
+ 
+26
+ 
+ 
+6. SYSTEM DESIGN 
+6.1 APPLICATION ARCHITECTURE DESIGN 
+The proposed system follows a three-tier architecture to ensure scalability, security, and maintainability. 
+Each layer has a defined responsibility, allowing the system to be easily updated or expanded in the future. 
+Presentation Tier (User Interface Layer): 
+❖ This is the interactive dashboard that allows users to input Arabic text, view sentiment analysis 
+results, and explore visual charts of customer emotions. Built using Plotly Dash or Flask with 
+HTML, CSS, and JavaScript, this layer ensures a responsive and user-friendly interface accessible 
+on both desktop and mobile devices. 
+Application Tier (Logic and Model Layer): 
+❖ This layer contains the core intelligence of the system — the trained AI sentiment model. It 
+processes input data, runs text preprocessing (tokenization, normalization, and feature extraction), 
+and classifies the sentiment as positive, negative, or neutral. The model developed using Python, 
+PyTorch, or TensorFlow, interacts with the backend through a RESTful API to deliver results 
+efficiently. 
+Data Tier (Storage Layer): 
+❖ The Data Tier manages and stores all essential information, including input texts, model 
+predictions, and user interaction logs. Using SQLite or MySQL, this layer provides secure, 
+structured storage that supports quick retrieval and future analysis. Data is encrypted and 
+anonymized to ensure privacy and compliance with ethical standards [4][6]. 
+This modular design supports clear separation between the user interface, AI logic, and database, making 
+the system more reliable, easier to maintain, and adaptable for future improvements such as integrating 
+additional languages or deeper sentiment metrics. 
+ 
+ 
+
+ 
+ 
+ 
+ 
+27
+ 
+ 
+6.2 DATA FLOW DIAGRAM (DFD) 
+➢ The Data Flow Diagram illustrates how data moves through the system, both Level 0 & 1 shows 
+different views of data flow. 
+ 
+Figure 6.1: Data Flow Diagram - Level 0 
+ 
+ 
+ 
+  Figure 6.2: Data Flow Diagram - Level 1 
+ 
+ 
+
+ 
+ 
+ 
+ 
+28
+ 
+ 
+6.3 Class Diagram 
+➢ The Class Diagram represents the system’s structure in terms of classes, attributes, and 
+relationships. It defines key components like User, ASAS System, preprocessing, Model, input, 
+Results, and Dashboard, ensuring organized data handling and modular system design. 
+ 
+ 
+Figure 6.3: Class Diagram 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+29
+ 
+ 
+6.4 Use Case Diagram 
+➢ The Use Case Diagram highlights how different actors interact with the system. It shows the main 
+users — such as User and Admin  
+ 
+ 
+Figure 6.4: Use Case Diagram 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+30
+ 
+ 
+6.5 Activity Diagram 
+➢ The Activity Diagram outlines the sequence of operations and workflow of the system, such as 
+user/Guest Login to text preprocessing, It traces each step showing how the system behaves in real 
+time. 
+ 
+Figure 6.5: Activity Diagram 
+
+ 
+ 
+ 
+ 
+31
+ 
+ 
+6.6 Sequence Diagram 
+➢ The Sequence Diagram depicts the order of interactions between system components over time. It 
+shows how the User Interface, ASAS Backend, Text preprocessing, and Database communicate 
+step-by-step, ensuring that Login, requests, processing, and responses occur in the correct order. 
+ 
+Figure 6.6: Sequence Diagram 
+ 
+ 
+
+ 
+ 
+ 
+ 
+32
+ 
+ 
+6.7 Entity Relationship Diagram (ERD) 
+➢ The Entity Relationship Diagram displays the logical structure of the system. It shows how entities 
+like User, inputs, results, and Model, provide a clear overview of how data is linked. 
+ 
+ 
+Figure 6.7: Entity Relationship Diagram 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+33
+ 
+ 
+7. CONCLUSION 
+ 
+This project presents an intelligent system designed to analyze and understand customer emotions 
+expressed in Arabic text, addressing a major gap in sentiment analysis technology. While English 
+sentiment systems have been extensively developed, Arabic remains uniquely challenging due to its 
+complex grammar, diverse dialects, and different writing styles. The proposed system directly tackles 
+these challenges through a tailored AI-based model built to recognize, classify, and visualize Arabic 
+sentiment with clarity and accuracy . 
+By transforming raw Arabic feedback into visual and actionable insights, the system enables organizations 
+to track customer satisfaction, detect negative trends early, and make better business decisions. Its 
+interactive dashboard bridges the gap between complex AI output and user-friendly understanding, 
+empowering both technical and non-technical users to interpret emotional trends easily . 
+ 
+Beyond its core technical contribution, this project provides several practical advantages : 
+❖ Enhanced Regional Focus: The system is designed specifically for Arabic-speaking audiences, 
+ensuring that regional language patterns and dialects are understood accurately. 
+ 
+❖ Increased User Trust: With secure data handling and ethical AI practices, users can trust that 
+their information remains private while benefiting from reliable, transparent analysis. 
+ 
+❖ Improved User Experience: The dashboard’s clean and intuitive interface allows anyone — from 
+analysts to small business owners — to quickly grasp what the data means without deep technical 
+knowledge . 
+ 
+
+ 
+ 
+ 
+ 
+34
+ 
+ 
+❖ Support for Local Businesses and Sellers: By understanding how customers feel about products 
+and services, companies can improve offerings, address complaints proactively, and strengthen 
+customer loyalty across the Arabic market . 
+ 
+❖ Increased Accessibility and Inclusivity : The system supports both desktop and mobile access, 
+making insights available to users regardless of their technical background or device type . 
+ 
+❖ Scalability for Future Expansion: Its modular architecture allows for future integration of more 
+dialects, deep learning enhancements, or additional business analytics features, keeping it relevant 
+as technology and language evolve . 
+ 
+In conclusion, this project demonstrates how AI-powered sentiment analysis tailored for Arabic can help 
+bridge the communication gap between people and businesses. By blending language understanding, data 
+visualization, and ethical AI practices, it lays the foundation for smarter decision-making and stronger 
+connections across the Arabic-speaking world. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+35
+ 
+ 
+8. REFERENCES 
+ 
+[1] Alsemaree, Ohud, et al. "Sentiment analysis of Arabic social media texts: A machine learning 
+approach to deciphering customer perceptions." Heliyon 10.9 (2024). 
+[2] Alsemaree, Ohud, et al. "An analysis of customer perception using lexicon-based sentiment 
+analysis of Arabic Texts framework." Heliyon 10.11 (2024). 
+[3] Almaqtari, Hani, Feng Zeng, and Ammar Mohammed. "Enhancing Arabic Sentiment Analysis 
+of Consumer Reviews: Machine Learning and Deep Learning Methods Based on 
+NLP." Algorithms 17.11 (2024): 495. 
+[4] Alsokkar, Abdullah, et al. "Original Research Article Sentiment analysis for Arabic call center 
+notes using machine learning techniques." Journal of Autonomous Intelligence 7.3 (2024): 1-16. 
+[5] Aladeemy, Amani A., et al. "Advancements and challenges in Arabic sentiment analysis: A 
+decade of methodologies, applications, and resource development." Heliyon 10.21 (2024). 
+[6] Bakhit, Duha Mohamed Adam, Lawrence Nderu, and Antony Ngunyi. "A hybrid neural 
+network model based on transfer learning for Arabic sentiment analysis of customer 
+satisfaction." Engineering Reports 6.10 (2024): e12874. 
