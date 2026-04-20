@@ -36,7 +36,7 @@ export default function Login() {
                         </div>
                     </Link>
                     <h1 className="auth-title">{t('login')}</h1>
-                    <p className="auth-subtitle">ASAS — Arabic Sentiment Analysis</p>
+                    <p className="auth-subtitle">ASAS — Arabic Sentiment Analysis System</p>
                 </div>
 
                 {error && <div className="auth-error">{error}</div>}

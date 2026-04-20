@@ -49,14 +49,8 @@ export default function Landing() {
                     <button className="stitch-link" style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontSize: 13 }} onClick={toggleLang}>
                         <HiOutlineGlobe size={18} /> {lang === 'ar' ? 'English' : 'عربي'}
                     </button>
-                    {user ? (
-                        <Link to="/dashboard" className="stitch-btn-primary">{t('dashboard')}</Link>
-                    ) : (
-                        <>
-                            <Link to="/login" className="stitch-link">{t('login')}</Link>
-                            <Link to="/register" className="stitch-btn-nav">{t('register')} <HiChevronLeft style={{ display: 'inline', verticalAlign: 'middle', margin: isRTL ? '0 2px 0 0' : '0 0 0 2px', transform: isRTL ? 'none' : 'rotate(180deg)' }} /></Link>
-                        </>
-                    )}
+                    <a href="#features" className="stitch-link" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); }}>{t('features')}</a>
+                    <a href="#about" className="stitch-link" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }}>{t('aboutSystem')}</a>
                 </div>
             </nav>
 
@@ -131,7 +125,7 @@ export default function Landing() {
             </section>
 
             {/* ── Features Section ── */}
-            <section className="stitch-features">
+            <section id="features" className="stitch-features">
                 <div className="stitch-features-header">
                     <div>
                         <h2 className="stitch-features-title">{t('featuresHeaderPt1')} <span>{t('featuresHeaderPt2')}</span></h2>
@@ -178,7 +172,7 @@ export default function Landing() {
             </section>
 
             {/* ── Footer ── */}
-            <footer className="stitch-footer">
+            <footer id="about" className="stitch-footer">
                 <div className="stitch-footer-top">
                     {/* Logo Section */}
                     <Link to="/" style={{ display: 'inline-block', marginBottom: 0 }}>

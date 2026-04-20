@@ -88,7 +88,7 @@ export default function Sidebar({ open, onClose }) {
 
                 <button className="sidebar-link" onClick={handleLogout} style={{ color: 'var(--accent-red)' }}>
                     <HiOutlineLogout />
-                    <span>{isGuest ? (lang === 'ar' ? 'خروج' : 'Exit') : t('logout')}</span>
+                    <span>{t('logout')}</span>
                 </button>
             </nav>
 

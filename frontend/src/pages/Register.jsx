@@ -51,7 +51,7 @@ export default function Register() {
                         </div>
                     </Link>
                     <h1 className="auth-title">{t('register')}</h1>
-                    <p className="auth-subtitle">ASAS — Arabic Sentiment Analysis</p>
+                    <p className="auth-subtitle">ASAS — Arabic Sentiment Analysis System</p>
                 </div>
 
                 {error && <div className="auth-error">{error}</div>}
