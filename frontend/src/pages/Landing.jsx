@@ -50,7 +50,7 @@ export default function Landing() {
                         <HiOutlineGlobe size={18} /> {lang === 'ar' ? 'English' : 'عربي'}
                     </button>
                     <a href="#features" className="stitch-link" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); }}>{t('features')}</a>
-                    <a href="#about" className="stitch-link" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }}>{t('aboutSystem')}</a>
+                    <Link to="/about" className="stitch-link">{t('aboutSystem')}</Link>
                 </div>
             </nav>
 
@@ -183,7 +183,7 @@ export default function Landing() {
 
                     {/* Links */}
                     <div className="stitch-footer-links">
-                        <Link to="#">{t('aboutSystem')}</Link>
+                        <Link to="/about">{t('aboutSystem')}</Link>
                         <Link to="#">{t('pricing')}</Link>
                         <Link to="/privacy-policy">{t('privacyPolicy')}</Link>
                         <Link to="#">{t('contactUs')}</Link>
