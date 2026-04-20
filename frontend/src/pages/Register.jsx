@@ -45,7 +45,11 @@ export default function Register() {
         <div className="auth-page">
             <div className="auth-card slide-up">
                 <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                    <div className="sidebar-logo" style={{ margin: '0 auto 12px', width: 48, height: 48, fontSize: 22 }}>أ</div>
+                    <Link to="/">
+                        <div style={{ background: '#e2e8f0', padding: '12px 24px', borderRadius: '16px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                            <img src="/logo.png" alt="ASAS Logo" style={{ height: '48px', width: 'auto', objectFit: 'contain', display: 'block' }} />
+                        </div>
+                    </Link>
                     <h1 className="auth-title">{t('register')}</h1>
                     <p className="auth-subtitle">ASAS — Arabic Sentiment Analysis</p>
                 </div>

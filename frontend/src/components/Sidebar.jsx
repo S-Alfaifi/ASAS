@@ -31,8 +31,9 @@ export default function Sidebar({ open, onClose }) {
         <aside className={`sidebar ${open ? 'open' : ''}`}>
             <div className="sidebar-header">
                 <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', gap: 12 }}>
-                    <div className="sidebar-logo">أ</div>
-                    <span className="sidebar-brand">ASAS</span>
+                    <div style={{ background: '#e2e8f0', padding: '6px 12px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src="/logo.png" alt="ASAS Logo" style={{ height: '24px', width: 'auto', objectFit: 'contain', display: 'block' }} />
+                    </div>
                 </Link>
             </div>
 
