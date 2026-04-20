@@ -58,9 +58,7 @@ export default function Landing() {
 
             {/* ── Hero Section ── */}
             <section className="stitch-hero">
-                <div className="stitch-badge">
-                    <HiOutlineLightningBolt size={16} /> {t('poweredBy')}
-                </div>
+
 
                 <h1 className="stitch-hero-title">
                     <span className="white-text">{t('discoverPower')}</span>
@@ -72,11 +70,11 @@ export default function Landing() {
                 </p>
 
                 <div className="stitch-hero-actions">
-                    <button className="stitch-btn-secondary" onClick={handleGuest} disabled={guestLoading}>
-                        <HiOutlineEye size={22} /> {guestLoading ? t('loading') : t('tryAsGuest')}
-                    </button>
+                    <Link to="/login" className="stitch-btn-secondary">
+                        {t('login')}
+                    </Link>
                     <Link to="/register" className="stitch-btn-primary">
-                        <IoRocketOutline size={22} /> {t('startForFree')}
+                        <IoRocketOutline size={22} /> {t('register')}
                     </Link>
                 </div>
 
@@ -117,11 +115,6 @@ export default function Landing() {
                     <div className="stitch-stat-icon purple"><IoPieChartOutline /></div>
                     <div className="stitch-stat-val">3</div>
                     <div className="stitch-stat-label">{t('statClasses')}</div>
-                </div>
-                <div className="stitch-stat-item">
-                    <div className="stitch-stat-icon"><IoLanguageOutline /></div>
-                    <div className="stitch-stat-val">AraBERT</div>
-                    <div className="stitch-stat-label">{t('statModel')}</div>
                 </div>
             </section>
 

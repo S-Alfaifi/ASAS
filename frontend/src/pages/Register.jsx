@@ -9,9 +9,23 @@ export default function Register() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const { register } = useAuth()
+    const [guestLoading, setGuestLoading] = useState(false)
+    const { register, guestLogin } = useAuth()
     const { t, lang } = useLanguage()
     const navigate = useNavigate()
+
+    const handleGuest = async () => {
+        setGuestLoading(true)
+        try {
+            await guestLogin()
+            navigate('/analyze')
+        } catch (err) {
+            console.error(err)
+            setError(t('error'))
+        } finally {
+            setGuestLoading(false)
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -56,8 +70,17 @@ export default function Register() {
                     </button>
                 </form>
 
-                <div className="auth-footer">
-                    {t('login')}? <Link to="/login">{t('login')}</Link>
+                <div className="auth-footer" style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '16px' }}>
+                    <div>
+                        {t('login')}? <Link to="/login">{t('login')}</Link>
+                    </div>
+                    <div style={{ position: 'relative', textAlign: 'center', margin: '4px 0' }}>
+                        <div style={{ borderTop: '1px solid #334155', position: 'absolute', top: '50%', width: '100%' }}></div>
+                        <span style={{ position: 'relative', background: '#0f172a', padding: '0 10px', fontSize: 12, color: '#94a3b8' }}>{lang === 'ar' ? 'أو' : 'OR'}</span>
+                    </div>
+                    <button type="button" className="btn btn-secondary btn-block" onClick={handleGuest} disabled={guestLoading || loading}>
+                        {guestLoading ? t('loading') : t('tryAsGuest')}
+                    </button>
                 </div>
             </div>
         </div>
