@@ -185,7 +185,7 @@ export default function Landing() {
                     <div className="stitch-footer-links">
                         <Link to="#">{t('aboutSystem')}</Link>
                         <Link to="#">{t('pricing')}</Link>
-                        <Link to="#">{t('privacyPolicy')}</Link>
+                        <Link to="/privacy-policy">{t('privacyPolicy')}</Link>
                         <Link to="#">{t('contactUs')}</Link>
                     </div>
 

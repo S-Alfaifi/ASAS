@@ -11,6 +11,7 @@ import History from './pages/History'
 import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 import Admin from './pages/Admin'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 function ProtectedRoute({ children }) {
     const { user, loading } = useAuth()
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
             <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/analyze" element={<Analyze />} />

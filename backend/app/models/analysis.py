@@ -1,7 +1,33 @@
 """Analysis Models"""
 from datetime import datetime, timezone
+import os
+from sqlalchemy.types import TypeDecorator, Text
+from cryptography.fernet import Fernet, InvalidToken
 from app import db
 
+# Static fallback key for local dev. In production, provide via DATA_ENCRYPTION_KEY env var
+FALLBACK_KEY = b'wz9-iY-S6u-17d4m4CqR96D0m8Qv8V6T2X9b-P3tWzI='
+encryption_key = os.environ.get('DATA_ENCRYPTION_KEY', FALLBACK_KEY.decode('utf-8')).encode('utf-8')
+cipher_suite = Fernet(encryption_key)
+
+class EncryptedText(TypeDecorator):
+    """Encrypts text seamlessly upon saving to the database and decrypts it upon retrieval."""
+    impl = Text
+    cache_ok = True
+
+    def process_bind_param(self, value, dialect):
+        if value is not None:
+            return cipher_suite.encrypt(value.encode('utf-8')).decode('utf-8')
+        return None
+
+    def process_result_value(self, value, dialect):
+        if value is not None:
+            try:
+                return cipher_suite.decrypt(value.encode('utf-8')).decode('utf-8')
+            except (InvalidToken, TypeError, ValueError):
+                # Return plain text if it hasn't been encrypted yet (backward compatibility)
+                return value
+        return None
 
 class AnalysisInput(db.Model):
     """Stores text inputs submitted for analysis"""
@@ -9,8 +35,8 @@ class AnalysisInput(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True)
-    input_text = db.Column(db.Text, nullable=False)
-    cleaned_text = db.Column(db.Text)
+    input_text = db.Column(EncryptedText, nullable=False)
+    cleaned_text = db.Column(EncryptedText)
     source_type = db.Column(db.String(20), default='manual')  # 'manual', 'file', 'api'
     file_name = db.Column(db.String(255))
     batch_id = db.Column(db.String(36))  # Groups file upload entries
